@@ -1,4 +1,4 @@
-# Rust-learning
+# Rust-learning code snippets
 
 ## Delay example
 ```
