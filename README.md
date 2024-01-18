@@ -22,6 +22,8 @@ pub fn clear(ary: &mut [u8]) {
         for i in ary { *i = 0; }
 }
 ```
+Output:
+```
  example::clear:
         test    rsi, rsi
         je      .LBB0_1
