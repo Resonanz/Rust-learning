@@ -18,8 +18,8 @@ pub fn clear(array: &mut [u8]) {
 }
 ```
 ```
-pub fn clear(ary: &mut [u8]) {
-        for i in ary { *i = 0; }
+pub fn clear(array: &mut [u8]) {
+        for i in array { *i = 0; }
 }
 ```
 Output:
