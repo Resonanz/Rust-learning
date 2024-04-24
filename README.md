@@ -33,3 +33,13 @@ Output:
 .LBB0_1:
         ret
 ```
+
+# egui
+
+## Make a UI button that is a small as the text it contains
+
+```
+if ui.small_button("mmmmmmmm").clicked() {
+    self.value += 0.0;
+};
+```
