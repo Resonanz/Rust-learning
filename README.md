@@ -37,9 +37,13 @@ Output:
 # egui
 
 ## Make a UI button that is a small as the text it contains
-
 ```
 if ui.small_button("mmmmmmmm").clicked() {
     self.value += 0.0;
 };
+```
+
+## Add extra space before the next widget
+```
+ui.add_space(10.0);
 ```
