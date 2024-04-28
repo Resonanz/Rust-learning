@@ -4,6 +4,7 @@
 
 ## Formatters
 If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty print may be required
+
 ```println!("This is some text with a formatter {:#?}, i);```
 
 ## Delay example
@@ -56,9 +57,10 @@ ui.add_space(10.0);
 
 # Enums
 
-## 
+## A simple enum
 
-```#[derive(Debug)]  // Add Debug trait for Animals
+```
+#[derive(Debug)]  // Add Debug trait for Animals
 enum Animals {
     Cat,
     Dog,
