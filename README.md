@@ -1,5 +1,11 @@
 # Rust-learning code snippets
 
+# Print macros
+
+## Formatters
+If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty print may be required
+```println!("This is some text with a formatter {:#?}, i);```
+
 ## Delay example
 ```
 use std::{thread, time};
@@ -47,3 +53,16 @@ if ui.small_button("mmmmmmmm").clicked() {
 ```
 ui.add_space(10.0);
 ```
+
+# Enums
+
+## 
+
+```#[derive(Debug)]  // Add Debug trait for Animals
+enum Animals {
+    Cat,
+    Dog,
+}
+```
+The Debug trait is required for printing the enum:
+```    println!("Animal = {:#?}", i);```
