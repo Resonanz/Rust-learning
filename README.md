@@ -7,7 +7,7 @@ If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty 
 
 ```println!("This is some text with a formatter {:#?}, i);```
 
-## Delay example
+#Adding a delay
 ```
 use std::{thread, time};
 thread::sleep(time::Duration::from_millis(500));
@@ -67,4 +67,6 @@ enum Animals {
 }
 ```
 The Debug trait is required for printing the enum:
-```    println!("Animal = {:#?}", i);```
+```
+println!("Animal = {:#?}", i);
+```
