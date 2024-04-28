@@ -7,12 +7,12 @@ If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty 
 
 ```println!("This is some text with a formatter {:#?}, i);```
 
-#Adding a delay
+# Adding a delay
 ```
 use std::{thread, time};
 thread::sleep(time::Duration::from_millis(500));
 ```
-## Zeroing an array of bytes
+# Zeroing an array of bytes
 These all generate identical code in [GodBolt](https://rust.godbolt.org) (Rust 1.75.0):
 ```
 pub fn clear(array: &mut [u8]) {
