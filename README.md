@@ -70,3 +70,20 @@ The Debug trait is required for printing the enum:
 ```
 println!("Animal = {:#?}", i);
 ```
+
+# Pattern matching
+
+## Matching a struct tuple
+```
+struct MyStruct {
+    a: u8,
+    b: u8,
+}
+
+let p = MyStruct { a: 22, b: 33 };
+
+match (p.a, p.b) {
+    (22, 33) => println!("Found the tuple!!!"),
+    _ => println!("Tuple not found :-("),
+}
+```
