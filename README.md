@@ -87,3 +87,22 @@ match (p.a, p.b) {
     _ => println!("Tuple not found :-("),
 }
 ```
+## Matching against enum data
+Find the match... extract the enum data !
+```
+enum EnumWithData {
+    A(u8, u32),
+    B(u8, u32),
+}
+
+fn main() {
+    let e = EnumWithData::A(55, 67);
+    match e {
+        EnumWithData::A(x,y) => println!("Wow, found {}, {}", x, y),
+        _ => println!("No match found"),
+    }
+```
+
+
+
+
