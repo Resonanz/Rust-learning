@@ -51,6 +51,20 @@ To run the script use ```./compile_compress_run.sh```.
 
 
 
+## Cargo automatic re-compile
+
+* https://github.com/watchexec/cargo-watch
+* https://stackoverflow.com/questions/29461693/how-can-i-get-cargo-to-recompile-changed-files-automatically
+
+Execute the following in VSCode Terminal to automatically recompile and run upon save:
+
+```
+cargo watch -c -w src -x run
+```
+
+
+
+
 ## Print macros
 
 ### Formatters
