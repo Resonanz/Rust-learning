@@ -124,4 +124,47 @@ fn main() {
 }
 ```
 
+A very nice example of pattern matching enums:
 
+(https://dev.to/aniket_botre/day-13-rust-enums-unleashing-the-power-of-variants-jli)
+
+```
+enum IpAddr {
+    V4(String),  // The variants carry additional data !!!
+    V6(String),
+}
+
+let home = IpAddr::V4(String::from("127.0.0.1"));
+
+// Match the enum variant and extract the additional data
+match home {
+    IpAddr::V4(addr) => println!("IPv4: {}", addr),
+    IpAddr::V6(addr) => println!("IPv6: {}", addr),
+}
+```
+
+Adding methods to enums:
+
+(https://dev.to/aniket_botre/day-13-rust-enums-unleashing-the-power-of-variants-jli)
+
+```
+enum TrafficLight {
+    Red,
+    Yellow,
+    Green,
+}
+
+impl TrafficLight {
+    fn time(&self) -> u8 {
+        match self {
+            TrafficLight::Red => 60,
+            TrafficLight::Yellow => 10,
+            TrafficLight::Green => 30,
+        }
+    }
+}
+
+let red = TrafficLight::Red;
+println!("Red light for {} seconds", red.time());
+// Output: Red light for 60 seconds
+```
