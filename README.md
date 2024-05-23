@@ -103,6 +103,23 @@ fn main() {
     }
 ```
 
+### Apparently Rust 1.65.0 brings a new ```let-else``` method for accessing a single enum variant as follows:
 
+(https://stackoverflow.com/questions/9109872/how-do-you-access-enum-values-in-rust)
+
+```
+#[derive(Debug)]
+enum Pet {
+    Cat(u8),
+    Dog(u8),
+}
+
+fn main() {   
+    let pc = Pet::Cat(4);
+
+    let Pet::Cat(x) = pc else {return};
+    println!("The cat has {} legs.", x)
+}
+```
 
 
