@@ -118,8 +118,8 @@ fn main() {
     let pc = Pet::Cat(4);
 
     let Pet::Cat(x) = pc else {return};  // Access the variant. 
-                                         // If ```pc``` cannot be destructured
-                                         // into a ```cat``` then return
+                                         // If pc cannot be destructured
+                                         // into Cat then return
     println!("The cat has {} legs.", x)
 }
 ```
