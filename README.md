@@ -21,7 +21,7 @@ panic = 'abort'     # Abort on panic
 strip = true        # Strip symbols from binary*
 ```
 
-The resultant binary (named "deleteme") was 342 kB.
+The resultant binary was 342 kB.
 
 ### What about compression of the executable
 
@@ -31,7 +31,7 @@ I downloaded the Linux version "upx-4.2.4-amd64_linux.tar.xz" (UPX - Linux versi
 
 
 ```
-./upx --best --lzma target/release/deleteme
+./upx --best --lzma target/release/my_release_binary
 ```
 
 ### Automating compression
@@ -43,8 +43,8 @@ Add the following to the script:
 ```
 #!/bin/bash
 cargo build --release
-./upx --best --lzma target/release/deleteme
-target/release/deleteme
+./upx --best --lzma target/release/my_release_binary
+target/release/my_release_binary
 ```
 
 To run the script use ```./compile_compress_run.sh```.
@@ -63,11 +63,19 @@ If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty 
 
 
 
+
+
+
+
 ## Adding a delay
 ```
 use std::{thread, time};
 thread::sleep(time::Duration::from_millis(500));
 ```
+
+
+
+
 
 
 
@@ -154,9 +162,8 @@ The Debug trait is required for printing the enum:
 println!("Animal = {:#?}", i);
 ```
 
-## Pattern matching
 
-### Matching a struct tuple
+### Pattern matching a struct tuple
 ```
 struct MyStruct {
     a: u8,
@@ -170,7 +177,7 @@ match (p.a, p.b) {
     _ => println!("Tuple not found :-("),
 }
 ```
-### Matching against enum data
+### Pattern matching against enum data
 Find the match... extract the enum data !
 ```
 enum EnumWithData {
