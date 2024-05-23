@@ -1,6 +1,6 @@
 # Rust-learning code snippets
 
-# Compiling
+## Compiling
 
 ### For size
 
@@ -53,19 +53,26 @@ To run the script use ```./compile_compress_run.sh```.
 
 
 
-# Print macros
+## Print macros
 
-## Formatters
+### Formatters
 If the trait std::fmt::Display is not implemented then {:?} or {:#?} for pretty print may be required
 
 ```println!("This is some text with a formatter {:#?}, i);```
 
-# Adding a delay
+
+
+
+## Adding a delay
 ```
 use std::{thread, time};
 thread::sleep(time::Duration::from_millis(500));
 ```
-# Zeroing an array of bytes
+
+
+
+
+## Zeroing an array of bytes
 These all generate identical code in [GodBolt](https://rust.godbolt.org) (Rust 1.75.0):
 ```
 pub fn clear(array: &mut [u8]) {
@@ -107,7 +114,7 @@ Output:
 
 
 
-# egui
+## egui
 
 ### Make a UI button that is a small as the text it contains
 ```
@@ -131,7 +138,7 @@ ui.add_space(10.0);
 
 
 
-# Enums
+## Enums
 
 ### A simple enum:
 
@@ -147,7 +154,7 @@ The Debug trait is required for printing the enum:
 println!("Animal = {:#?}", i);
 ```
 
-# Pattern matching
+## Pattern matching
 
 ### Matching a struct tuple
 ```
