@@ -36,9 +36,7 @@ I downloaded the Linux version "upx-4.2.4-amd64_linux.tar.xz" (UPX - Linux versi
 
 ### Automating compression
 
-Creating a bash script: ```touch compile_compress_run.sh``` then make executable ```chmod +x compile_compress_run.sh```.
-
-Add the following to the script:
+Cargo has no post precessing capability, so... create a bash script: ```touch compile_compress_run.sh``` and make executable ```chmod +x compile_compress_run.sh```. Add the following to the script:
 
 ```
 #!/bin/bash
