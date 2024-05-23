@@ -23,7 +23,7 @@ strip = true        # Strip symbols from binary*
 
 The resultant binary (named "deleteme") was 342 kB.
 
-### What about compression
+### What about compression of the executable
 
 UPX (https://github.com/upx/upx) is recommended to compress the final binary by 50-70%. UPX releases on Github are themselves about 670 kB and cross platform (Win + Linux, no Mac it seems).
 
@@ -33,6 +33,24 @@ I downloaded the Linux version "upx-4.2.4-amd64_linux.tar.xz" (UPX - Linux versi
 ```
 ./upx --best --lzma target/release/deleteme
 ```
+
+### Automating compression
+
+Creating a bash script: ```touch compile_compress_run.sh``` then make executable ```chmod +x compile_compress_run.sh```.
+
+Add the following to the script:
+
+```
+#!/bin/bash
+cargo build --release
+./upx --best --lzma target/release/deleteme
+target/release/deleteme
+```
+
+To run the script use ```./compile_compress_run.sh```.
+
+
+
 
 
 # Print macros
@@ -76,23 +94,46 @@ Output:
         ret
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # egui
 
-## Make a UI button that is a small as the text it contains
+### Make a UI button that is a small as the text it contains
 ```
 if ui.small_button("mmmmmmmm").clicked() {
     self.value += 0.0;
 };
 ```
 
-## Add extra space before the next widget
+### Add extra space before the next widget
 ```
 ui.add_space(10.0);
 ```
 
+
+
+
+
+
+
+
+
+
+
 # Enums
 
-## A simple enum
+### A simple enum:
 
 ```
 #[derive(Debug)]  // Add Debug trait for Animals
@@ -108,7 +149,7 @@ println!("Animal = {:#?}", i);
 
 # Pattern matching
 
-## Matching a struct tuple
+### Matching a struct tuple
 ```
 struct MyStruct {
     a: u8,
@@ -122,7 +163,7 @@ match (p.a, p.b) {
     _ => println!("Tuple not found :-("),
 }
 ```
-## Matching against enum data
+### Matching against enum data
 Find the match... extract the enum data !
 ```
 enum EnumWithData {
