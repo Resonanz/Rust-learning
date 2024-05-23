@@ -1,5 +1,40 @@
 # Rust-learning code snippets
 
+# Compiling
+
+### For size
+
+* https://github.com/johnthagen/min-sized-rust
+* https://stackoverflow.com/questions/29008127/why-are-rust-executables-so-huge
+
+Rust binaries even for "Hello, world!" can be large. Quoting: 
+
+    Rust uses static linking to compile its programs, meaning that all libraries required by even the simplest Hello world! program will be compiled into your executable. This also includes the Rust runtime.
+
+I created a Linux executable Rust release using the following in ```cargo.toml```:
+
+```
+[profile.release]
+opt-level = 'z'     # Optimize for size
+codegen-units = 1   # Reduce number of codegen units to increase optimizations
+panic = 'abort'     # Abort on panic
+strip = true        # Strip symbols from binary*
+```
+
+The resultant binary (named "deleteme") was 342 kB.
+
+### What about compression
+
+UPX (https://github.com/upx/upx) is recommended to compress the final binary by 50-70%. UPX releases on Github are themselves about 670 kB and cross platform (Win + Linux, no Mac it seems).
+
+I downloaded the Linux version "upx-4.2.4-amd64_linux.tar.xz" (UPX - Linux version, statically linked) and dragged the single binary file "upx" into the root folder of my Rust project. I then used UPX to compress the 342 kB binary down to 139 kB as follows:
+
+
+```
+./upx --best --lzma target/release/deleteme
+```
+
+
 # Print macros
 
 ## Formatters
