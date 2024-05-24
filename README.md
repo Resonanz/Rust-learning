@@ -59,8 +59,24 @@ To run the script use ```./compile_compress_run.sh```.
 Execute the following in VSCode Terminal to automatically recompile and run upon save:
 
 ```
-cargo watch -c -w src -x run
+cargo watch -q -c -w src -x run
 ```
+
+For --release code, use the following:
+
+```
+cargo watch -q -c -w src -x 'run -- --release'
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
