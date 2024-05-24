@@ -166,6 +166,44 @@ ui.add_space(10.0);
 
 
 
+### Draw a circle on a window
+
+```
+let center1 = pos2(100.0,100.0);  // pos2 = a struct
+let center2 = pos2(100.0,200.0);
+let stroke = Stroke::new(3.0, Color32::LIGHT_GREEN);
+
+let circle1 = CircleShape::filled(center1, self.value, Color32::RED);
+ui.painter().add(circle1);
+
+let circle2 = CircleShape::stroke(center2, self.value, stroke);
+ui.painter().add(circle2);
+
+```
+
+
+
+
+
+
+
+
+## Looping
+
+* https://doc.rust-lang.org/core/ops/struct.Range.html#method.step_by
+* This is a core/std library iterator method
+
+```
+for x in (1..10).step_by(2) {
+    println!("{}", x);
+}
+```
+
+
+
+
+
+
 
 
 
