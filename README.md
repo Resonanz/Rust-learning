@@ -186,6 +186,55 @@ ui.painter().add(circle2);
 
 
 
+### Display an SVG image
+
+It is essential to add the image loader to cargo.toml as follows:
+
+```
+impl TemplateApp {
+    /// Called once before the first frame.
+    pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
+        ...
+        egui_extras::install_image_loaders(&cc.egui_ctx);  // <--- Install image loaders
+        Default::default()
+    }
+}
+```
+
+It is also essential to update cargo.toml dependencies with egui_extras as follows:
+
+```
+[dependencies]
+egui_extras = { features = ["default", "all_loaders"] }
+```
+
+With this in place, SVG images can be displayed using one of these two:
+
+```
+ui.image(egui::include_image!("../assets/test-tube.svg"));
+ui.add(egui::Image::new(include_image!("../assets/test-tube.svg"))
+    .fit_to_exact_size(Vec2::new(100.0, 100.0)));
+
+```
+
+These could be wrapped in a ScrollArea:
+
+```
+egui::ScrollArea::both().max_height(400.0).show(ui, |ui| {
+    ui.add(egui::Image::new(egui::include_image!("../assets/test-tube.svg"))
+        .fit_to_exact_size(Vec2::new(200.0, 100.0)));
+    ui.add(egui::Image::new(egui::include_image!("../assets/ferris.svg"))
+        .fit_to_exact_size(Vec2::new(200.0, 100.0)));
+    ui.add(egui::Image::new(egui::include_image!("../assets/ferris.svg"))
+        .fit_to_exact_size(Vec2::new(200.0, 100.0)));
+});
+```
+
+
+
+
+
+
 
 
 ## Looping
