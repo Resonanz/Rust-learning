@@ -1,5 +1,12 @@
 # Rust-learning code snippets
 
+## Keeping Rust up-to-date
+
+To check rustup and rustc versions: ```rustup --version```
+
+To update to latest: ```rustup update```
+
+
 ## Compiling
 
 ### For size
