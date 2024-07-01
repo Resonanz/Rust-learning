@@ -80,7 +80,22 @@ cargo watch -q -c -w src -x 'run -- --release'
 
 
 
+## Timing code using timeit
 
+Add to cargo.toml:
+
+```
+[dependencies]
+timeit = "0.1.2"
+```
+Then add the timing code where the first macro parameter is the nunber of loops to run:
+```
+// TIMING LOOP
+let sec = timeit::timeit_loops!(1, 
+    /* CODE TO TEST HERE */
+});
+println!("Time taken was: {} s", sec);
+```
 
 
 
