@@ -126,6 +126,28 @@ thread::sleep(time::Duration::from_millis(500));
 
 
 
+## const TUPLES
+
+```
+const SUPLE: [u32; 2] = [1,2]; 
+
+fn suple() {
+    let s = SUPLE[0];  // Legit
+}
+
+const TUPLE: [(u32, u32); 2] = [(1,2), (3,4)];
+
+fn tuple() {
+    let t = TUPLE[0].1;  // Legit
+}
+```
+
+
+
+
+
+
+
 
 
 ## Zeroing an array of bytes
