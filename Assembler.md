@@ -135,3 +135,45 @@ playground::calculate:
 	addq	$24, %rsp
 	retq
 ```
+
+### Playing with structs and methods
+
+```
+#[no_mangle]
+pub fn example() {
+    let mut c = Cat { meow: 12345678, legs: 13579, ears: true };
+    c.leggies(102);
+}
+
+pub struct Cat {
+    pub meow: u32,
+    pub legs: u16,
+    ears: bool,
+}
+
+impl Cat {
+    pub fn leggies(&mut self, state: u16) {
+        self.legs = state;
+    }
+}
+```
+
+which compiles to:
+
+```
+example:
+        push    rax
+        mov     dword ptr [rsp], 12345678
+        mov     word ptr [rsp + 4], 13579
+        mov     byte ptr [rsp + 6], 1
+        mov     rdi, rsp
+        mov     esi, 102
+        call    qword ptr [rip + example::Cat::leggies::h590b8d6c8419a26e@GOTPCREL]
+        pop     rax
+        ret
+
+example::Cat::leggies::h590b8d6c8419a26e:
+        mov     ax, si
+        mov     word ptr [rdi + 4], ax
+        ret
+```
