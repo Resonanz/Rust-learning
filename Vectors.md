@@ -1,3 +1,5 @@
+# Vectors
+
 The Primegen reviewed a lecture by Bjarne Stroustrup on data structures, specifically vectors versus linked lists.
 
 The takeaway was that vectors are super fast while linked lists are slow, even for e.g. insertions at the beginning of a vector.
@@ -26,7 +28,7 @@ Notes
 use timeit::timeit_loops;
 
 fn main() {
-    const VEC_LENGTH: usize = 2_000_000_000;
+    const VEC_LENGTH: usize = 2_000_000_000;  // 2 MP acA1920-155um camera 8-bit mode: 1920 x 1080 x 1000 frames = 2_073_600_000 bytes = ca. 2 GB
 
     let sec = timeit_loops!(5, {
         let mut w: Vec<u8> = vec![31; VEC_LENGTH];
