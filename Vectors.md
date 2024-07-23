@@ -61,5 +61,5 @@ fn main() {
 
 The two plots are using the same data sets. The first is linear-linear, the second is log-log. The blue trace illustrates vector creation/filling, then re-filling using a for loop. The red trace includes the times requires to insert and remove a single element at position 3 in the vector.
 
-![Vector length (lin)](https://github.com/user-attachments/assets/0e51e932-378d-4e78-973b-dd7c97c8d85b)
-![Vector length (log)](https://github.com/user-attachments/assets/d87409dd-ac70-4fa6-8307-a551d808c9ce)
+![Vector length (lin)](https://github.com/user-attachments/assets/2a9281a1-fc05-4a31-bae5-2ad98f9114e9)
+![Vector length (log)](https://github.com/user-attachments/assets/e770ff67-cbf3-44d4-91ee-f1898cafe1cf)
