@@ -24,7 +24,7 @@ The following times (per loop) are for VEC_LENGTHs from 2 up to 2_000_000_000.
 Notes
 - Dropping the vector takes essentially zero time
 
-
+```
 use timeit::timeit_loops;
 
 fn main() {
@@ -42,3 +42,4 @@ fn main() {
 
     println!("Elapsed time = {}", sec);
 }
+```
