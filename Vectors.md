@@ -45,7 +45,6 @@ fn main() {
 
     let sec = timeit_loops!(50, {
         let mut w: Vec<u8> = vec![31; VEC_LENGTH];
-        //let w: Vec<u8> = Vec::new();
         for i in 0..VEC_LENGTH {  // This loop appears to take a tiny fraction of the 
             w[i] = 7;             // the time that is required to create the vec![]
         }
