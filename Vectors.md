@@ -8,21 +8,12 @@ This is because CPUs are typically optimized for contiguous operations like movi
 
 So how fast are vector operation in Rust? Let's timeit.
 
-The following times (per loop) are for VEC_LENGTHs from 2 up to 2_000_000_000.
-
-- VEC_LENGTH = 2: 4.9 us
-- VEC_LENGTH = 20: 5.9 us
-- VEC_LENGTH = 200: 4.3 us
-- VEC_LENGTH = 2_000: 4.4 us
-- VEC_LENGTH = 20_000: 7.4 us
-- VEC_LENGTH = 200_000: 73 us
-- VEC_LENGTH = 2_000_000: 602 us
-- VEC_LENGTH = 20_000_000: 8090 us (= 8 ms)
-- VEC_LENGTH = 200_000_000: 110_000 us (= 110 ms)
-- VEC_LENGTH = 2_000_000_000: 1_060_000 us (= 1.06 s)
+In the following times (per loop) the VEC_LENGTHs range from 2 up to 2_000_000_000.
 
 Notes
-- Dropping the vector takes essentially zero time
+- Dropping and for-loop filling the vector takes essentially zero time
+
+## Code for creating a vector and for-loop filling
 
 ```
 use timeit::timeit_loops;
@@ -30,16 +21,46 @@ use timeit::timeit_loops;
 fn main() {
     const VEC_LENGTH: usize = 2_000_000_000;  // 2 MP acA1920-155um camera 8-bit mode: 1920 x 1080 x 1000 frames = 2_073_600_000 bytes = ca. 2 GB
 
-    let sec = timeit_loops!(5, {
+    let sec = timeit_loops!(50, {
         let mut w: Vec<u8> = vec![31; VEC_LENGTH];
-        for i in 0..VEC_LENGTH - 1 {
-            w[i] = 7;
+        for i in 0..VEC_LENGTH {  // This loop appears to take a tiny fraction of the 
+            w[i] = 7;             // the time that is required to create the vec![]
         }
         println!("{}", w[VEC_LENGTH - 1]);  // Need print otherwise compiler optimizes away the vector creation code
-
-        drop(w);  // Makes no difference to timeit
+        drop(w);  // Makes no obvious difference to timeit
     });
-
     println!("Elapsed time = {}", sec);
 }
 ```
+
+## Code for creating a vector and for-loop filling then inserting and deleting an element at the start of the vector
+
+```
+use timeit::timeit_loops;
+
+fn main() {
+    const VEC_LENGTH: usize = 2_000_000_000;  // 2 MP acA1920-155um camera 8-bit mode: 1920 x 1080 x 1000 frames = 2_073_600_000 bytes = ca. 2 GB
+
+    let mut r = 0;
+
+    let sec = timeit_loops!(50, {
+        let mut w: Vec<u8> = vec![31; VEC_LENGTH];
+        //let w: Vec<u8> = Vec::new();
+        for i in 0..VEC_LENGTH {  // This loop appears to take a tiny fraction of the 
+            w[i] = 7;             // the time that is required to create the vec![]
+        }
+        println!("{}", w[VEC_LENGTH - 1]);  // Need print otherwise compiler optimizes away the vector creation code
+        w.insert(3, 123);
+        r = w.remove(3);
+        drop(w);  // Makes no obvious difference to timeit
+    });
+    println!("Elapsed time = {}, r = {}", sec, r);
+}
+
+```
+## Plots of vector size versus creation / insertion / deletion
+
+The two plots are using the same data sets. The first is linear-linear, the second is log-log. 
+
+![Vector length (lin)](https://github.com/user-attachments/assets/0e51e932-378d-4e78-973b-dd7c97c8d85b)
+![Vector length (log)](https://github.com/user-attachments/assets/d87409dd-ac70-4fa6-8307-a551d808c9ce)
