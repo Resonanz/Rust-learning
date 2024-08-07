@@ -86,3 +86,17 @@ for i in (0..self.raw_avi.len() - 3).rev() {
     }
 }
 ```
+
+## Grabbing a slice of a vector
+```
+let a = vec![1, 2, 3, 4, 5];
+
+println!("{:?}", &a[1..4]);    // Slice takes part of a vector
+let b: &[i32] = &a;            // Convert entire vector to a slice
+let b = a.as_slice();          // Nice as it conveys intent
+```
+
+
+
+
+
