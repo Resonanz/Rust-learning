@@ -96,7 +96,10 @@ let b: &[i32] = &a;            // Convert entire vector to a slice
 let b = a.as_slice();          // Nice as it conveys intent
 ```
 
-
+## Other vector operations
+```
+some_vector.clear();  // Does this operate on the fat pointer alone? 
+```
 
 
 
