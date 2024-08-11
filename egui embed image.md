@@ -27,7 +27,16 @@ Now that the image loaders are present, let's insert an image from memory.
 First we create a Vec of length 40*40 and fill it with decimal 100 (a grayscale value between 0 and 255):
 
 ```
-let v: Vec<u8> = vec![100; 40*40];
+/* ======================================================================================= */
+
+// WORKS !!!
+// Add a slider to set the grayscale
+ui.add(egui::Slider::new(&mut self.slider_val, 0..=255));
+
+/* ======================================================================================= */
+```
+```
+let v: Vec<u8> = vec![self.slider_val; 40 * 40];
 let ci = ColorImage::from_gray([40,40], &v);
 ```
 Then we use the vector data to "load" the texture data, give it a TextureId and size it, then display the image:
