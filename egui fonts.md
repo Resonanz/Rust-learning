@@ -3,6 +3,7 @@
 This was helpful for adding the BTreeMap:
 
 * https://github.com/emilk/egui/discussions/4449
+* https://github.com/markusdd/rusty_meter
 
 Several steps are required:
 
