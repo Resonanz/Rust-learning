@@ -19,5 +19,10 @@ fn u32_to_byte_array(&self, val: u32) -> [u8; 4] {
     let res23to16 = (val & 0x000000FF) as u8;
     let res31to24 = (val & 0x000000FF) as u8;
     [res31to24, res23to16, res15to8, res7to0]
+    //
+    // Is this nay better than:
+    //   let m: u32 = 0x12345678;
+    //   let m = m.to_be_bytes();
+    //   println!("m = {:?}", m);
 }
 ```
