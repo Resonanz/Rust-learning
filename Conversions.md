@@ -24,5 +24,8 @@ fn u32_to_byte_array(&self, val: u32) -> [u8; 4] {
     //   let m: u32 = 0x12345678;
     //   let m = m.to_be_bytes();
     //   println!("m = {:?}", m);
+    //
+    // Could also use a rotate of val_u32
+    // u32::rotate_right(val, 8);
 }
 ```
