@@ -10,3 +10,14 @@ fn convert_le_to_be(array: &[u8]) -> u32 {
     ((array[0] as u32) << 0)
 }
 ```
+
+### Convert from u32 to 4 bytes
+```
+fn u32_to_byte_array(&self, val: u32) -> [u8; 4] {
+    let res7to0 = (val & 0x000000FF) as u8;
+    let res15to8 = (val & 0x000000FF) as u8;
+    let res23to16 = (val & 0x000000FF) as u8;
+    let res31to24 = (val & 0x000000FF) as u8;
+    [res31to24, res23to16, res15to8, res7to0]
+}
+```
