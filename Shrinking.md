@@ -4,6 +4,26 @@ This is a long but really great blog post: https://darkcoding.net/software/a-ver
 
 ## More older notes: Compiling
 
+Try compiling a really basic Rust program on Ubuntu:
+
+```
+fn main() {
+    println!("Hello");
+}
+```
+> rustc -C opt-level=z -C lto -C strip=symbols prog.rs
+
+The binary is about 300 kB. This will shring down to about 16 kB (the same size as a minimal C or C++ program compiled on Linux) is you add an addition 
+
+```
+-C prefer-dynamic
+```
+But this won't run on Linux (unlike the C and C++ binaries) because it cannot find the libraries:
+
+```
+./prog: error while loading shared libraries: libstd-d5189b81a4fa4d36.so: cannot open shared object file: No such file or directory
+```
+
 ### For size
 
 * https://github.com/johnthagen/min-sized-rust
