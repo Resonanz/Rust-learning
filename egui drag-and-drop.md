@@ -5,6 +5,13 @@ Relies on winit which may not work under wayland: https://github.com/emilk/egui/
 * https://docs.rs/egui/latest/src/egui/data/input.rs.html#358-373
 
 ```
+let native_options = eframe::NativeOptions {
+        viewport: egui::ViewportBuilder::default()
+            .with_drag_and_drop(true) <-------------------
+            ...etc
+```
+
+```
 // Capture the files dropped this frame
 if !&ctx.input(|i| i.raw.dropped_files.is_empty()) {
     println!("File dropped");
