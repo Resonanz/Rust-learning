@@ -11,7 +11,7 @@ let native_options = eframe::NativeOptions {
             .with_drag_and_drop(true) <-------------------
             ...etc
 ```
-
+The following is similar to the egui example. The egui example would be preferable to follow.
 ```
 // Capture the files dropped this frame
 if !&ctx.input(|i| i.raw.dropped_files.is_empty()) {
