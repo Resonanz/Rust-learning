@@ -29,8 +29,13 @@ See also ```ui.vertical_centered``` and ```ui.vertical_centered_justified```
 The simplest method foradding a spinner widget is super simple. According to the docs, "If the size isn't set explicitly, the active style's `interact_size` is used."
 
 
-The second method is more complex
+The second method is more complex and adds a size through the constructor.
+
+The third method allocates space on the canvas I guess, then adds the widget.
 ```
 ui.spinner();
+
+ui.add(egui::Spinner::new().size(50.));
+
 ui.add_sized([50., 50.], egui::Spinner::new().size(50.));
 ```
