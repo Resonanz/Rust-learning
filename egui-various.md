@@ -23,3 +23,14 @@ ui.vertical(|ui| {
 });
 ```
 See also ```ui.vertical_centered``` and ```ui.vertical_centered_justified```
+
+### Spinner widget
+
+The simplest method foradding a spinner widget is super simple. According to the docs, "If the size isn't set explicitly, the active style's `interact_size` is used."
+
+
+The second method is more complex
+```
+ui.spinner();
+ui.add_sized([50., 50.], egui::Spinner::new().size(50.));
+```
