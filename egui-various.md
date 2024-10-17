@@ -80,7 +80,7 @@ v.push(Pos2 {
 ui.painter().add(Shape::line(v, (1., Color32::LIGHT_BLUE)));
 ```
 
-#### 
+#### line_segment (draws a single line rather than a series of lines from a vector)
 
 ```
 let locx = rect.min[0];
