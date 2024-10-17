@@ -39,3 +39,85 @@ ui.add(egui::Spinner::new().size(50.));
 
 ui.add_sized([50., 50.], egui::Spinner::new().size(50.));
 ```
+
+### Drawing lines
+
+Both of the following go inside a cloure (inside a widget in my case):
+
+```
+ui.allocate_ui_with_layout(size, layout, |ui| {
+```
+
+#### Shape::line
+
+Combining many ```Pos2``` points into a vector then calling ```Shape::line```
+```
+let locx = rect.min[0];
+let locy = rect.min[1];
+
+let mut v = Vec::new();
+v.push(Pos2 {
+    x: locx + 0.,
+    y: locy + 0.,
+});
+v.push(Pos2 {
+    x: locx + 70.,
+    y: locy + 0.,
+});
+v.push(Pos2 {
+    x: locx + 70.,
+    y: locy + 70.,
+});
+v.push(Pos2 {
+    x: locx + 0.,
+    y: locy + 70.,
+});
+v.push(Pos2 {
+    x: locx + 0.,
+    y: locy + 0.,
+});
+
+ui.painter().add(Shape::line(v, (1., Color32::LIGHT_BLUE)));
+```
+
+#### 
+
+```
+let locx = rect.min[0];
+let locy = rect.min[1];
+
+let arr1 = [
+    Pos2 {
+        x: locx + 35.,
+        y: locy + 0.,
+    },
+    Pos2 {
+        x: locx + 0.,
+        y: locy + 70.,
+    },
+];
+let arr2 = [
+    Pos2 {
+        x: locx + 0.,
+        y: locy + 70.,
+    },
+    Pos2 {
+        x: locx + 70.,
+        y: locy + 70.,
+    },
+];
+let arr3 = [
+    Pos2 {
+        x: locx + 70.,
+        y: locy + 70.,
+    },
+    Pos2 {
+        x: locx + 35.,
+        y: locy + 0.,
+    },
+];
+
+ui.painter().line_segment(arr1, (1., Color32::LIGHT_GRAY));
+ui.painter().line_segment(arr2, (1., Color32::LIGHT_GRAY));
+ui.painter().line_segment(arr3, (1., Color32::LIGHT_GRAY));
+```
