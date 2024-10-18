@@ -1,5 +1,7 @@
 ## Display additional fonts
 
+NOTE to self: check if this works: https://github.com/emilk/egui/issues/2188 
+
 This was helpful for adding the BTreeMap:
 
 * https://github.com/emilk/egui/discussions/4449
