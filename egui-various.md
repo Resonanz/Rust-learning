@@ -154,7 +154,7 @@ ui.style_mut().text_styles.insert(
 );
 ```
 
-### ui.group(|ui| { etc
+### buttons in a group e.g. ui.group(|ui| { etc
 
 Let's create a group of buttons, that is, buttons grouped with a box around them...
 ```
