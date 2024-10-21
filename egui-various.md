@@ -121,3 +121,23 @@ ui.painter().line_segment(arr1, (1., Color32::LIGHT_GRAY));
 ui.painter().line_segment(arr2, (1., Color32::LIGHT_GRAY));
 ui.painter().line_segment(arr3, (1., Color32::LIGHT_GRAY));
 ```
+
+## egui sub-window title font size
+
+The following changes the heading font size that is used for the sub-window title.
+```
+let mut style: egui::Style = (*ctx.style()).clone();
+
+style.text_styles.insert(
+    egui::TextStyle::Heading,
+    FontId::new(14.0, egui::FontFamily::Proportional), // Set the font size to 14.0
+);
+
+// Apply the new style
+ctx.set_style(style);
+
+egui::Window::new("THE TITLE").show(ctx, |ui| {
+    ui.label("This window has a custom title font size.");
+    ui.label(egui::RichText::new("I'm a heading").heading());
+});
+```
