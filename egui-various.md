@@ -152,4 +152,27 @@ ui.style_mut().text_styles.insert(
     egui::TextStyle::Button,
     egui::FontId::new(12.0, eframe::epaint::FontFamily::Monospace),
 );
-    ```
+```
+
+### ui.group(|ui| { etc
+
+Let's create a group of buttons, that is, buttons grouped with a box around them...
+```
+ui.group(|ui| {
+    for _ in 1..3 {
+        do_button(ui);
+    }
+});
+
+#[inline(always)]
+fn do_button(ui: &mut egui::Ui) {
+    if ui
+        .add(
+            egui::Button::new("Increment")
+                .min_size(Vec2 { x: 5., y: 19. })
+                .rounding(3.),
+        )
+        .clicked()
+    {};
+```
+
