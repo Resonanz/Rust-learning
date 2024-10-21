@@ -141,3 +141,15 @@ egui::Window::new("THE TITLE").show(ctx, |ui| {
     ui.label(egui::RichText::new("I'm a heading").heading());
 });
 ```
+## Change style for ui
+```
+// https://docs.rs/egui/0.29.0/egui/style/struct.Style.html
+// Mutably borrow internal Style.
+// Changes apply to this Ui and
+// its subsequent children.
+// Note the key/value pair.
+ui.style_mut().text_styles.insert(
+    egui::TextStyle::Button,
+    egui::FontId::new(12.0, eframe::epaint::FontFamily::Monospace),
+);
+    ```
