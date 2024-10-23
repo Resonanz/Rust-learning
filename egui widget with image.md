@@ -92,4 +92,4 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 * On line 322 we call ```widgets::image::paint_texture_load_result``` passing in ```ui``` and the image and more
 * On line 329 a response is set up but not used? ```response = widgets::image::texture_load_result_response```
 
-  So on line 322 the ```image``` widget is called ```paint_texture_load_result``` which calls ```paint_texture_at(ui.painter(), rect, options, texture);```. paint_texture_at is an egui::widgets function which paints a texture inside a rectangle, and in this case takes a helper function ui.painter().
+  So on line 322 the ```image``` function ```paint_texture_load_result``` is called which in turn calls ```paint_texture_at(ui.painter(), rect, options, texture);```. paint_texture_at is an egui::widgets function which paints a texture inside a rectangle, and in this case takes a helper function ui.painter().
