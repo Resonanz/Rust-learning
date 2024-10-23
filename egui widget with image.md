@@ -2,7 +2,7 @@ There is a "Button with Icon" widget in the Widgets demo panel on egui.rs.
 
 **This makes it clear that it is possible to load a PNG and place it on a widget.**
 
-Inside ```egui/crates/egui_demo_lib/src/demo/widget_gallery.rs``` on line 212 we find the image being laoded:
+Inside ```egui/crates/egui_demo_lib/src/demo/widget_gallery.rs``` on line 212 we find the image being loaded:
 
 ```let egui_icon = egui::include_image!("../../data/icon.png");```
 
@@ -72,7 +72,7 @@ This ```struct Button``` declared three functions:
 
 1. ```new``` which creates a text only button: ```Self::opt_image_and_text(None, Some(text.into()))```
 2. ```image``` which creates an image only button ```Self::opt_image_and_text(Some(image.into()), None)```
-3. ```image_and_text``` which creates atext and image button: ```Self::opt_image_and_text(Some(image.into()), Some(text.into()))```
+3. ```image_and_text``` which creates a text and image button: ```Self::opt_image_and_text(Some(image.into()), Some(text.into()))```
 
 These three function define the values used for the Self struct.
 
