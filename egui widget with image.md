@@ -88,4 +88,6 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 * On line 319 the image rectangle is defined: ```let image_rect = Rect::from_min_size(image_pos, image_size);```
 * On line 321 we "Load the image from its Image::source, returning the resulting SizedTexture." using ```let tlr = image.load_for_size(ui.ctx(), image_size);```
 * On line 322 we call ```widgets::image::paint_texture_load_result``` passing in ```ui``` and the image and more
-*  
+* On line 329 a response is set up but not used? ```response = widgets::image::texture_load_result_response```
+
+  So on line 322 the ```image``` widget is called ```paint_texture_load_result``` which calls ```paint_texture_at(ui.painter(), rect, options, texture);```. paint_texture_at is an egui::widgets function which paints a texture inside a rectangle, and in this case takes a helper function ui.painter().
