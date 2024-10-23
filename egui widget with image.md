@@ -88,4 +88,4 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 * On line 319 the image rectangle is defined: ```let image_rect = Rect::from_min_size(image_pos, image_size);```
 * On line 321 we "Load the image from its Image::source, returning the resulting SizedTexture." using ```let tlr = image.load_for_size(ui.ctx(), image_size);```
 * On line 322 we call ```widgets::image::paint_texture_load_result``` passing in ```ui``` and the image and more
-* 
+*  
