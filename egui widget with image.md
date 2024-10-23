@@ -66,4 +66,17 @@ pub struct Button<'a> {
 }
 ```
 
-This 
+This ```struct Button``` declared three functions:
+
+1. ```new``` which creates a text only button: ```Self::opt_image_and_text(None, Some(text.into()))```
+2. ```image``` which creates an image only button ```Self::opt_image_and_text(Some(image.into()), None)```
+3. ```image_and_text``` which creates atext and image button: ```Self::opt_image_and_text(Some(image.into()), Some(text.into()))```
+
+These three function define the values used for the Self struct.
+
+Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
+
+* On line 206 ```space_available_for_image``` is calculated
+* On line 213 ```image_size``` is calculated
+* On line 246 ```desired_size``` is assigned x and y image dimension sizes
+* 
