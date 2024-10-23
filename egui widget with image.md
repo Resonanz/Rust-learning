@@ -1,5 +1,7 @@
 There is a "Button with Icon" widget in the Widgets demo panel on egui.rs.
 
+**This makes it clear that it is posible to load a PNG and place it on a widget.**
+
 Inside ```egui/crates/egui_demo_lib/src/demo/widget_gallery.rs``` on line 212 we find the image being laoded:
 
 ```let egui_icon = egui::include_image!("../../data/icon.png");```
