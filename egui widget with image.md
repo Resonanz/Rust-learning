@@ -74,7 +74,7 @@ This ```struct Button``` declared three functions:
 2. ```image``` which creates an image only button ```Self::opt_image_and_text(Some(image.into()), None)```
 3. ```image_and_text``` which creates a text and image button: ```Self::opt_image_and_text(Some(image.into()), Some(text.into()))```
 
-These three function define the values used for the Self struct.
+These three functions define the values used for the Self struct.
 
 Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 
@@ -86,7 +86,7 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 * On line 278 we have the interaction type ```let visuals = ui.style().interact(&response);``` which means "Check for clicks, drags and/or hover on a specific region of this Ui."
 * On line 302 the rect is drawn: ```ui.painter().rect(```
 * On line 309 the cursor is moved ready to draw the image: ```let mut cursor_x = rect.min.x + button_padding.x;```
-* on line 312 we line up the image position: ```let mut image_pos = ui.layout()...```
+* On line 312 we line up the image position: ```let mut image_pos = ui.layout()...```
 * On line 319 the image rectangle is defined: ```let image_rect = Rect::from_min_size(image_pos, image_size);```
 * On line 321 we "Load the image from its Image::source, returning the resulting SizedTexture." using ```let tlr = image.load_for_size(ui.ctx(), image_size);```
 * On line 322 we call ```widgets::image::paint_texture_load_result``` passing in ```ui``` and the image and more
