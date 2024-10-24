@@ -93,3 +93,48 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 * On line 329 a response is set up but not used? ```response = widgets::image::texture_load_result_response```
 
   So on line 322 the ```image``` function ```paint_texture_load_result``` is called which in turn calls ```paint_texture_at(ui.painter(), rect, options, texture);```. paint_texture_at is an egui::widgets function which paints a texture inside a rectangle, and in this case takes a helper function ui.painter().
+
+### Works !!!
+
+The following code is my first attempt but does work to display a PNG as a texture.
+
+```
+// load_for_size returns enum TextureLoadResult
+// enum variant Ok contains TexturePoll
+// TexturePoll enum contains variant Ready
+// Ready variant contains struct SizedTexture
+// SizedTexture struct contains id: TextureId and size:Vec2
+// TextureId enum contains variants Managed(u64) and Custom(u64)
+//let i = &img;
+let tlr = img.load_for_size(ui.ctx(), desired_size); // This stands for "texture load result"
+match tlr {
+    Ok(TexturePoll::Ready { texture }) => {
+        //println!("TexturePoll::Ready !!! texture.id = {:?}", texture.id);
+        // paint_texture_at(ui.painter(), rect, options, texture);
+        ui.painter().add(RectShape {
+            rect,
+            rounding: Rounding::ZERO,
+            fill: Color32::YELLOW,
+            stroke: Stroke::NONE,
+            blur_width: 0.0,
+            fill_texture_id: texture.id,
+            uv: Rect::from_min_max(Pos2::new(0.0, 0.0), Pos2::new(1.0, 1.0)),
+            // uv: Rect::ZERO,
+        });
+    }
+    Ok(TexturePoll::Pending { .. }) => {
+        //println!("TexturePoll::Pending");
+    }
+    Err(x) => {
+        //println!("tlr Err() {x}");
+        let font_id = TextStyle::Body.resolve(ui.style());
+        ui.painter().text(
+            rect.center(),
+            Align2::CENTER_CENTER,
+            "⚠",
+            font_id,
+            ui.visuals().error_fg_color,
+        );
+    }
+}
+```
