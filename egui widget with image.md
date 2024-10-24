@@ -98,6 +98,12 @@ Now we get to the implementation on line 178: ```impl Widget for Button<'_>```
 
 The following code is my first attempt but does work to display a PNG as a texture.
 
+The image was loaded as:
+
+```
+const IMG_ICON: ImageSource<'_> = include_image!("../assets/icon-256.png");
+```
+
 ```
 // load_for_size returns enum TextureLoadResult
 // enum variant Ok contains TexturePoll
