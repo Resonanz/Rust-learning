@@ -19,3 +19,12 @@ if response.hovered() {
     }
 }
 ```
+
+### Text and background and foreground colors
+
+```
+visuals.text_color()
+visuals.bg_fill
+visuals.bg_stroke
+etc...
+```
