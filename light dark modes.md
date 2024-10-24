@@ -23,6 +23,10 @@ if response.hovered() {
 ### Text and background and foreground colors
 
 ```
+Something like this to begin --> let visuals = ui.style().interact(&response);
+
+then
+
 visuals.text_color()
 visuals.bg_fill
 visuals.bg_stroke
