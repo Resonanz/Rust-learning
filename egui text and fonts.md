@@ -74,3 +74,13 @@ ui.scope(|ui| {
     ui.label("This text will be red, monospace, and won't wrap to a new line");
 }); // the temporary settings are reverted here
 ```
+
+## Grouping some text (with outline)
+
+```
+ui.group(|ui| {
+    ui.label("Within a frame");
+    ui.label("Within a frame but longer");
+    ui.set_min_height(20.0);
+});
+```
