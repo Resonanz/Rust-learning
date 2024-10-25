@@ -61,3 +61,16 @@ ui.label(RichText::new("🯰🯱🯲🯳🯴🯵🯶🯷🯸🯹")
     })
 );
 ```
+## Overriding text inside a temporary [`Ui`] (scope)
+
+```
+// A `scope` creates a temporary [`Ui`] in which you can change settings:
+ui.scope(|ui| {
+    ui.visuals_mut().override_text_color = Some(Color32::RED);
+    ui.style_mut().override_text_style = Some(TextStyle::Monospace);
+    // Text wrapping or truncation...
+    //ui.style_mut().wrap_mode = Some(egui::TextWrapMode::Truncate);
+
+    ui.label("This text will be red, monospace, and won't wrap to a new line");
+}); // the temporary settings are reverted here
+```
