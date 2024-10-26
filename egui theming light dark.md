@@ -50,3 +50,25 @@ painter.add(epaint::CircleShape {
     stroke: visuals.bg_stroke,
 });
 ```
+
+## Basic starter for theming
+
+```
+if ui.visuals().dark_mode {
+    ctx.set_visuals_of(
+        egui::Theme::Dark,
+        egui::Visuals {
+            panel_fill: egui::Color32::DARK_RED,
+            ..Default::default()
+        },
+    );
+} else {
+    ctx.set_visuals_of(
+        egui::Theme::Dark,
+        egui::Visuals {
+            panel_fill: egui::Color32::LIGHT_RED,
+            ..Default::default()
+        },
+    );
+}
+```
