@@ -2,6 +2,13 @@
 ```
 ctx.set_visuals(Visuals::dark());
 ```
+### Set using buttons
+```
+menu::bar(ui, |ui| {
+    widgets::global_theme_preference_buttons(ui);  // Three buttons
+    widgets::global_theme_preference_switch(ui);  // Single icon
+});
+```
 
 ### Test for light or dark mode
 ```
