@@ -1,3 +1,5 @@
+# How to add images (PNG, SVG, etc.) into egui
+
 Assuming that you are using **eframe_template** (https://github.com/emilk/eframe_template)...
 
 ### Step 1
