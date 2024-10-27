@@ -44,8 +44,7 @@ In the following I use the image as a button that can be clicked or hovered.
 // Button 1
 let b = ui.add(
     egui::Image::new(MY_IMAGE_NAME)
-        .tint(self.data.button1.get_tint())
-        .fit_to_exact_size(Vec2::new(32., 32.))
+        .fit_to_exact_size(Vec2::new(32., 32.))   <<<<<<<<<<<<<<<< Define the image size
         .sense(Sense::click()),
 );
 
