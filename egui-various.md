@@ -1,3 +1,9 @@
+## Changing the refresh rate
+
+Can I set my own refresh rate (instead of 60 Hz, e.g. 30 Hz)?:  See ctx.request_repaint_after(<Std::Duration>)
+
+If other processes of your app requires more repaints they will still occur, e.g. there's no fps cap, only a minimum fps. 
+
 ### How to align text within a selectable label?
 
 https://github.com/emilk/egui/discussions/3868
