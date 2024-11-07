@@ -638,4 +638,80 @@ This could be extended with:
 4. Alert configurations
 5. Distributed tracing
 
-Would you like to see any of these extensions or other monitoring patterns?
+## Logging to files. Let me create a practical example showing some common logging approaches.
+
+```rust
+use log::{info, warn, error, LevelFilter};
+use simple_logger::SimpleLogger;
+use std::fs::OpenOptions;
+use std::io::Write;
+
+// Example 1: Using the log crate with a file appender
+fn setup_file_logger() -> Result<(), Box<dyn std::error::Error>> {
+    // Create or append to log file
+    let file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("application.log")?;
+        
+    // Initialize simple logger with file output
+    SimpleLogger::new()
+        .with_level(LevelFilter::Info)
+        .with_output_file(file)
+        .init()?;
+        
+    Ok(())
+}
+
+// Example 2: Direct file writing
+fn write_to_log_file(message: &str) -> std::io::Result<()> {
+    let mut file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("custom.log")?;
+        
+    let timestamp = chrono::Local::now().format("%Y-%m-%d %H:%M:%S");
+    writeln!(file, "[{}] {}", timestamp, message)?;
+    
+    Ok(())
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Setup file logger
+    setup_file_logger()?;
+    
+    // Log messages using log macros
+    info!("Application started");
+    warn!("This is a warning message");
+    error!("This is an error message");
+    
+    // Direct file writing
+    write_to_log_file("Custom log message")?;
+    
+    Ok(())
+}
+
+// To use this code, add these dependencies to Cargo.toml:
+/*
+[dependencies]
+log = "0.4"
+simple_logger = "4.2"
+chrono = "0.4"
+*/
+
+```
+
+I've shown two main approaches to logging in Rust:
+
+1. Using the `log` crate with `simple_logger`:
+   - Provides structured logging with different log levels
+   - Can write to both stdout and files
+   - Supports log filtering by level
+   - Thread-safe logging
+
+2. Direct file writing:
+   - More manual control over the logging format
+   - Simpler if you just need basic file logging
+   - Good for custom logging requirements
+
+To use this code, you'll need to add the mentioned dependencies to your `Cargo.toml`. Would you like me to explain any particular aspect in more detail or show other logging configurations?
