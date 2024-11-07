@@ -110,3 +110,59 @@ let red = TrafficLight::Red;
 println!("Red light for {} seconds", red.time());
 // Output: Red light for 60 seconds
 ```
+
+## Comparing two enums values (requires PartialEq)
+
+You can use `assert_eq!` to compare enum values if the enum derives `PartialEq`:
+
+```rust
+#[derive(PartialEq, Debug)]  // Add these derives
+enum Message {
+    Text(String),
+    Number(i32)
+}
+
+#[test]
+fn test_enums() {
+    let msg1 = Message::Text(String::from("hello"));
+    let msg2 = Message::Text(String::from("hello"));
+    
+    assert_eq!(msg1, msg2);  // Passes if they're equal
+    
+    // If you want more descriptive failure messages:
+    assert_eq!(msg1, msg2, "Messages should be equal!");
+}
+```
+
+The `Debug` derive is optional but helpful for readable error messages if the assert fails. `PartialEq` is required for `assert_eq!` to work.
+
+## What does PartialEq mean?
+
+`PartialEq` is a trait in Rust that enables equality comparison (using `==` and `!=`) between values.
+
+It's called "Partial" equality because for some types, not all values can be compared. The classic example is floating-point numbers: `NaN` (Not a Number) is not equal to anything, not even itself.
+
+Here's a simple example:
+```rust
+// This derives PartialEq automatically
+#[derive(PartialEq)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+// Or you can implement it manually
+impl PartialEq for Point {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y
+    }
+}
+
+let p1 = Point { x: 1, y: 1 };
+let p2 = Point { x: 1, y: 1 };
+assert_eq!(p1, p2);  // This works because of PartialEq
+```
+
+There's also a related trait called `Eq` which is for types where every value can be equal to itself (unlike `NaN` in floats). `Eq` requires `PartialEq` but adds the guarantee that equality is reflexive.
+
+
