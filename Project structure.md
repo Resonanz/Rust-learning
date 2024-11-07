@@ -190,4 +190,38 @@ Key features shown:
 - Module organization with both files and directories
 - Separate configuration for lib and bin targets
 
-Want me to show more advanced features like integration tests or workspace organization?
+
+## Can one library file access function in another library file?
+
+Yes! Here's a simple example:
+
+```rust
+// lib.rs
+pub mod math;
+pub mod utils;
+```
+
+```rust
+// math.rs
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+```
+
+```rust
+// utils.rs
+use crate::math::add;  // Import from another module using crate
+
+pub fn do_math() -> i32 {
+    // Use the add function from math.rs
+    add(2, 2)
+}
+```
+
+The key is using `use crate::` to reference other modules in your project. You can also use:
+```rust
+use super::*;  // Import from parent module
+use self::*;   // Import from current module
+```
+
+That's all you need! Would you like to see more complex examples of module interactions?
