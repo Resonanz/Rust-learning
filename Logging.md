@@ -1,6 +1,6 @@
 # Logging
 
-Simplelog is what I have used: https://crates.io/crates/simplelog
+Simplelog is what I have used: https://crates.io/crates/simplelog. Notes on Simplelog are at the bottom of this page.
 
 ## The most common way is to use the `log` crate with an implementation like `env_logger`. Here's how:
 
