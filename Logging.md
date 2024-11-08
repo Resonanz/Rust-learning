@@ -1,6 +1,8 @@
-## Logging
+# Logging
 
-The most common way is to use the `log` crate with an implementation like `env_logger`. Here's how:
+Simplelog is what I have used: https://crates.io/crates/simplelog
+
+## The most common way is to use the `log` crate with an implementation like `env_logger`. Here's how:
 
 1. Add to `Cargo.toml`:
 ```toml
