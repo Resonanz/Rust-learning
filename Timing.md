@@ -1,3 +1,11 @@
+Using standard library:
+
+```
+let start = Instant::now();
+let duration = start.elapsed();
+println!("Elapsed time = {:?}", duration);
+```
+
 ```
 // Source: https://docs.rs/timeit/0.1.2/timeit/
 
