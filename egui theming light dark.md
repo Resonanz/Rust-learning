@@ -1,3 +1,17 @@
+### These provide access to both light/dark system-setting and light/dark egui setting
+```
+// Get the system-set theme
+// Returns Some(Light) or Some(Dark)
+let preference = ctx.system_theme();
+println!("preference = {:?}", preference);
+
+// Get the egui-set theme
+// Returns Light or Dark
+let theme = ctx.theme();
+println!("theme = {:?}", theme);
+```
+
+
 ### Set global
 ```
 ctx.set_visuals(Visuals::dark());
