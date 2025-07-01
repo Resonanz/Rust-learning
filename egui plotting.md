@@ -35,7 +35,7 @@ let histogram_data = vec![
         })
         .collect();
 
-    let chart = BarChart::new(bars).name("Plot name");
+    let chart = BarChart::new("Plot name", bars);
 
     Plot::new("Histogram")
         .allow_scroll(false)
