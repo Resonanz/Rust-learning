@@ -1,107 +1,75 @@
-//
-// Passing and updating through references
-//
-// We have main() + a "mod_widget" module.
-//
-// The struct containing the mod_widget
-// data to be shared across modules
-// is defined in the mod_widget module.
-//
-// This struct is instantiated in
-// main() as "states" and populated
-// with initial values.
-//
-// The struct is then passed as a
-// &mut back into the mod_widget widget.
-//
-// The &mut struct values are then
-// used to update a second identical
-// -ish struct which contains &'a mut
-// variables rather than concrete
-// values. Viola !!!
-//
-// Now either main() or widget can
-// update the values inside the
-// references.
+use module3::States;
 
 fn main() {
-    // Let's say we want to pass a struct
-    // populated using a ConfigBuilder into the
-    // mod_widget module...(pretend ConfigBuilder)
-    let animals = mod_widget::Animals { cat: 123, dog: 456 };
-
-    // Also create a struct using a struct
-    // inside the widget to hold shared data
-    let mut states = mod_widget::State {
-        mouse: false,
-        rat: 44,
-        cat: 55,
-    };
-
-    // Now pass both structs
-    // back into the widget
-    let mut portal = mod_widget::Widget::new(&mut states, animals);
-
-    // Now change the referenced value inside the widget.
-    portal.change_a_val();
-    println!("main mouse = {}", portal.mouse);
-    portal.print_mouse_val();
-    *portal.mouse = false;
-    portal.print_mouse_val();
+    let texistate1 = States { mouse: false }; // concrete states for each texicon
+    let texistate2 = States { mouse: false };
+    let texistate3 = States { mouse: false };
+    let m = module1::TexiStates::new(texistate1, texistate2, texistate3);
+    println!("vec = {m:?}");
 }
 
-mod mod_widget {
-    #[derive(Default)]
-    pub struct Animals {
-        // Pretend ConfigBuilder struct
-        pub cat: u32,
-        pub dog: u32,
+pub mod module1 {
+    use crate::module3::States;
+
+    #[derive(Debug)]
+    pub struct TexiStates {
+        pub v: Vec<States>,
     }
 
-    pub struct State {
+    // impl Default for MyStruct {
+    //     fn default() -> Self {
+    //         Self { vec: Vec::new() }
+    //     }
+    // }
+    impl TexiStates {
+        pub fn new(s1: States, s2: States, s3: States) -> Self {
+            let mut w: Vec<States> = Vec::new();
+            w.push(s1);
+            w.push(s2);
+            w.push(s3);
+            Self { v: w }
+        }
+    }
+}
+
+pub mod module2 {
+    use crate::module3::{self, Config, States, Widget};
+
+    pub fn config(vec_of_states: Vec<States>) {
+        let conf = Config { config: 1243 };
+        let mut states = States { mouse: false };
+        let state_ref = Widget::new(conf, &mut states);
+        // vec_of_states.push(states_ref);
+    }
+}
+
+pub mod module3 {
+    pub struct Config {
+        pub config: u32,
+    }
+
+    #[derive(Debug)]
+    pub struct States {
         pub mouse: bool,
-        pub rat: u32,
-        pub cat: u32,
     }
 
     pub struct Widget<'a> {
         pub mouse: &'a mut bool,
-        pub rat: &'a mut u32,
-        pub cat: &'a mut u32,
-        _animals: Animals,
     }
 
     impl<'a> Widget<'a> {
-        pub fn new(texi_struct: &'a mut State, animals: Animals) -> Self {
-            Widget {
-                mouse: &mut texi_struct.mouse,
-                rat: &mut texi_struct.rat,
-                cat: &mut texi_struct.cat,
-                _animals: animals,
+        pub fn new(config: Config, state: &'a mut States) -> Self {
+            Self {
+                mouse: &mut state.mouse,
             }
         }
 
         pub fn change_a_val(&mut self) {
             *self.mouse = true;
-            *self.rat = 42;
-            *self.cat = 42;
         }
 
         pub fn print_mouse_val(&self) {
-            println!("mod_widget mouse = {}", self.mouse)
-            // println!("anim")
+            println!("mod_widget mouse = {}", self.mouse);
         }
     }
 }
-
-// pub mod xyz {
-//     pub struct Remote<'a> {
-//         pub var: &'a mut u32,
-//     }
-
-//     impl<'a> Remote<'a> {
-//         pub fn new() -> Self {}
-
-//         pub fn rem_update(&mut self) {}
-//     }
-// }
