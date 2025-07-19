@@ -4,6 +4,7 @@
 ### Mac
 
 - For Mac Samply is pretty interesting: https://github.com/mstange/samply?tab=readme-ov-file
+- YouTube: https://www.youtube.com/watch?v=M_EniM_IfnQ
 - The following from the Samply Github page produces some significant graphical output inside Brave (but it won't display with shields up)
 
 ```
