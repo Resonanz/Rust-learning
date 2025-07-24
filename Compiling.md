@@ -18,6 +18,36 @@ codegen-units = 1   # Reduce number of codegen units to increase optimizations
 panic = 'abort'     # Abort on panic
 strip = true        # Strip symbols from binary*
 ```
+=====================================================
+
+Gemini:
+
+Removing debug information is a standard and crucial step for creating small, optimized production binaries. Here are the best ways to do it, from the most common and recommended method to manual alternatives.
+
+The Best Method: Use Cargo's Release Profile
+The most idiomatic and portable way to control this is directly within your Cargo.toml file. Cargo uses "profiles" to manage different build configurations, and the release profile is used for cargo build --release.
+
+You can add a strip option to this profile.
+
+Open your Cargo.toml file.
+
+Add the following section (or modify it if it already exists):
+
+Ini, TOML
+
+[profile.release]
+strip = true
+Now, simply run your release build as usual:
+
+Bash
+
+cargo build --release
+The resulting binary in target/release/ will be stripped.
+
+What does strip = true do?
+This setting tells rustc to remove as much information as possible from the binary, including both debug info and symbols.
+
+=====================================================
 
 The resultant binary was 342 kB.
 
